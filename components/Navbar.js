@@ -3,20 +3,22 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Menu, X, Sun, Moon, MapPin } from 'lucide-react';
-
-const navLinks = [
-  { label: 'Home', href: '/' },
-  { label: 'Destinations', href: '/destinations' },
-  { label: 'About', href: '/about' },
-  { label: 'Contact', href: '/contact' },
-];
+import { Menu, X, Sun, Moon, MapPin, Languages } from 'lucide-react';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [dark, setDark] = useState(false);
   const pathname = usePathname();
+  const { t, lang, toggleLang } = useLanguage();
+
+  const navLinks = [
+    { label: t.nav.home, href: '/' },
+    { label: t.nav.destinations, href: '/destinations' },
+    { label: t.nav.about, href: '/about' },
+    { label: t.nav.contact, href: '/contact' },
+  ];
 
   useEffect(() => {
     const saved = localStorage.getItem('theme');
@@ -46,6 +48,8 @@ export default function Navbar() {
   }
 
   const isHome = pathname === '/';
+  const textClass =
+    scrolled || !isHome ? 'text-mokara-dark dark:text-gray-200' : 'text-white';
 
   return (
     <header
@@ -62,13 +66,7 @@ export default function Navbar() {
             <div className="w-8 h-8 bg-mokara-orange rounded-full flex items-center justify-center">
               <MapPin className="w-4 h-4 text-white" />
             </div>
-            <span
-              className={`text-xl font-bold tracking-tight transition-colors ${
-                scrolled || !isHome
-                  ? 'text-mokara-dark dark:text-white'
-                  : 'text-white'
-              }`}
-            >
+            <span className={`text-xl font-bold tracking-tight transition-colors ${textClass}`}>
               Mokara
             </span>
           </Link>
@@ -80,11 +78,7 @@ export default function Navbar() {
                 <Link
                   href={link.href}
                   className={`text-base font-medium transition-colors hover:text-mokara-orange ${
-                    pathname === link.href
-                      ? 'text-mokara-orange'
-                      : scrolled || !isHome
-                      ? 'text-mokara-dark dark:text-gray-200'
-                      : 'text-white'
+                    pathname === link.href ? 'text-mokara-orange' : textClass
                   }`}
                 >
                   {link.label}
@@ -94,15 +88,27 @@ export default function Navbar() {
           </ul>
 
           {/* Actions */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2">
+            {/* Language Toggle */}
+            <button
+              onClick={toggleLang}
+              aria-label="Toggle language"
+              title={lang === 'en' ? 'Switch to Swahili' : 'Switch to English'}
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold border transition-colors ${
+                scrolled || !isHome
+                  ? 'border-gray-200 dark:border-white/20 text-mokara-dark dark:text-gray-200 hover:border-mokara-orange hover:text-mokara-orange'
+                  : 'border-white/40 text-white hover:bg-white/10'
+              }`}
+            >
+              <Languages className="w-3.5 h-3.5" />
+              {lang === 'en' ? 'SW' : 'EN'}
+            </button>
+
+            {/* Dark mode */}
             <button
               onClick={toggleDark}
               aria-label="Toggle dark mode"
-              className={`p-2 rounded-full transition-colors hover:bg-white/10 ${
-                scrolled || !isHome
-                  ? 'text-mokara-dark dark:text-gray-200'
-                  : 'text-white'
-              }`}
+              className={`p-2 rounded-full transition-colors hover:bg-white/10 ${textClass}`}
             >
               {dark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
             </button>
@@ -111,15 +117,11 @@ export default function Navbar() {
               href="/contact"
               className="hidden md:inline-flex items-center px-5 py-2.5 bg-mokara-orange hover:bg-mokara-orange-dark text-white text-sm font-semibold rounded-full transition-colors shadow-lg"
             >
-              Book Now
+              {t.nav.bookNow}
             </Link>
 
             <button
-              className={`md:hidden p-2 rounded-full transition-colors hover:bg-white/10 ${
-                scrolled || !isHome
-                  ? 'text-mokara-dark dark:text-gray-200'
-                  : 'text-white'
-              }`}
+              className={`md:hidden p-2 rounded-full transition-colors hover:bg-white/10 ${textClass}`}
               onClick={() => setIsOpen(!isOpen)}
               aria-label="Toggle menu"
             >
@@ -155,7 +157,7 @@ export default function Navbar() {
             onClick={() => setIsOpen(false)}
             className="inline-flex justify-center items-center px-6 py-3 bg-mokara-orange text-white font-semibold rounded-full mt-2"
           >
-            Book Now
+            {t.nav.bookNow}
           </Link>
         </div>
       </div>
