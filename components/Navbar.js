@@ -79,7 +79,7 @@ export default function Navbar() {
               <li key={link.href}>
                 <Link
                   href={link.href}
-                  className={`text-sm font-medium transition-colors hover:text-mokara-orange ${
+                  className={`text-base font-medium transition-colors hover:text-mokara-orange ${
                     pathname === link.href
                       ? 'text-mokara-orange'
                       : scrolled || !isHome
