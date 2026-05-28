@@ -26,7 +26,7 @@ export async function generateMetadata({ params }) {
       'all-inclusive travel',
     ],
     openGraph: {
-      title: `${pkg.title} | Moucara Adventures`,
+      title: `${pkg.title} | Moucara Adventures Limited`,
       description: pkg.tagline,
       images: [{ url: pkg.image, width: 1200, height: 630, alt: pkg.title }],
     },

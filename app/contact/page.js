@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useState } from 'react';
 import { Phone, Mail, MapPin, MessageCircle, Send, CheckCircle, Clock, Instagram, Facebook } from 'lucide-react';
@@ -56,7 +56,7 @@ export default function ContactPage() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    const msg = `Hello Moucara Adventures! I'd like to get in touch.
+    const msg = `Hello Moucara Adventures Limited! I'd like to get in touch.
 
 *Name:* ${form.name}
 *Email:* ${form.email}
@@ -302,7 +302,7 @@ export default function ContactPage() {
                   allowFullScreen=""
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
-                  title="Moucara Adventures Office — Westlands, Nairobi"
+                  title="Moucara Adventures Limited Office — Westlands, Nairobi"
                 />
               </div>
             </div>

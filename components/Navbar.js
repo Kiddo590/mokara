@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
@@ -67,7 +67,7 @@ export default function Navbar() {
               <MapPin className="w-4 h-4 text-white" />
             </div>
             <span className={`text-xl font-bold tracking-tight transition-colors ${textClass}`}>
-              Moucara Adventures
+              Moucara Adventures Limited
             </span>
           </Link>
 

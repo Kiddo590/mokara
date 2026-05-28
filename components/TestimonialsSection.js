@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { motion } from 'framer-motion';
 import { Star, Quote } from 'lucide-react';
@@ -11,7 +11,7 @@ const testimonials = [
     avatar: 'AW',
     rating: 5,
     package: 'Zanzibar Luxury Retreat',
-    text: "Zanzibar was absolutely magical! Moucara Adventures took care of everything — from the moment we landed to the farewell transfer. The private sandbank picnic was the highlight of my life. I've already booked the Mombasa trip for next year!",
+    text: "Zanzibar was absolutely magical! Moucara Adventures Limited took care of everything — from the moment we landed to the farewell transfer. The private sandbank picnic was the highlight of my life. I've already booked the Mombasa trip for next year!",
   },
   {
     name: 'James Omondi',
@@ -27,7 +27,7 @@ const testimonials = [
     avatar: 'GM',
     rating: 5,
     package: 'Kisumu Lake Experience',
-    text: "I never thought Kisumu could be so beautiful. The boat ride at sunrise, the hippos at sunset, the tilapia by the lake — it was all perfect. Moucara Adventures's attention to detail is unmatched. Highly recommend!",
+    text: "I never thought Kisumu could be so beautiful. The boat ride at sunrise, the hippos at sunset, the tilapia by the lake — it was all perfect. Moucara Adventures Limited's attention to detail is unmatched. Highly recommend!",
   },
   {
     name: 'David Kariuki',
@@ -35,7 +35,7 @@ const testimonials = [
     avatar: 'DK',
     rating: 5,
     package: 'Mombasa Beach Escape',
-    text: "Booked the Mombasa package for our anniversary and it was flawless. The hotel was stunning, the Old Town tour was fascinating, and the food was incredible. Moucara Adventures made it so stress-free and special.",
+    text: "Booked the Mombasa package for our anniversary and it was flawless. The hotel was stunning, the Old Town tour was fascinating, and the food was incredible. Moucara Adventures Limited made it so stress-free and special.",
   },
   {
     name: 'Sarah Achieng',
@@ -43,7 +43,7 @@ const testimonials = [
     avatar: 'SA',
     rating: 5,
     package: 'Nairobi City Explorer',
-    text: "Even as a Kenyan, I discovered so much about my own country with Moucara Adventures. The Giraffe Centre and elephant orphanage were incredible. I highly recommend this for anyone who wants to see Nairobi properly!",
+    text: "Even as a Kenyan, I discovered so much about my own country with Moucara Adventures Limited. The Giraffe Centre and elephant orphanage were incredible. I highly recommend this for anyone who wants to see Nairobi properly!",
   },
   {
     name: 'Michael Njuguna',
@@ -51,7 +51,7 @@ const testimonials = [
     avatar: 'MN',
     rating: 5,
     package: 'Zanzibar Luxury Retreat',
-    text: "Five stars doesn't cover it. The Zanzibar retreat was pure luxury from start to finish. Stone Town, the spice farms, the sunset dhow — every single moment was curated to perfection. Moucara Adventures, you've spoiled us!",
+    text: "Five stars doesn't cover it. The Zanzibar retreat was pure luxury from start to finish. Stone Town, the spice farms, the sunset dhow — every single moment was curated to perfection. Moucara Adventures Limited, you've spoiled us!",
   },
 ];
 
@@ -62,7 +62,7 @@ export default function TestimonialsSection() {
         <SectionHeader
           eyebrow="Traveler Stories"
           title="What Our Guests Say"
-          subtitle="Real experiences from real travelers who explored with Moucara Adventures."
+          subtitle="Real experiences from real travelers who explored with Moucara Adventures Limited."
         />
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

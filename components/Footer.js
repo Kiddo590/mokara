@@ -1,4 +1,4 @@
-import Link from 'next/link';
+﻿import Link from 'next/link';
 import { MapPin, Phone, Mail, MessageCircle, Instagram, Facebook } from 'lucide-react';
 
 const destinations = [
@@ -10,7 +10,7 @@ const destinations = [
 ];
 
 const company = [
-  { label: 'About Moucara Adventures', href: '/about' },
+  { label: 'About Moucara Adventures Limited', href: '/about' },
   { label: 'All Destinations', href: '/destinations' },
   { label: 'Contact Us', href: '/contact' },
 ];
@@ -26,7 +26,7 @@ export default function Footer() {
               <div className="w-8 h-8 bg-mokara-orange rounded-full flex items-center justify-center">
                 <MapPin className="w-4 h-4 text-white" />
               </div>
-              <span className="text-xl font-bold text-white">Moucara Adventures</span>
+              <span className="text-xl font-bold text-white">Moucara Adventures Limited</span>
             </div>
             <p className="text-sm leading-relaxed text-gray-400 mb-6">
               All-inclusive travel experiences across Kenya and beyond. We handle
@@ -145,7 +145,7 @@ export default function Footer() {
 
         <div className="border-t border-white/10 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-xs text-gray-500">
-            &copy; {new Date().getFullYear()} Moucara Adventures. All rights reserved.
+            &copy; {new Date().getFullYear()} Moucara Adventures Limited. All rights reserved.
           </p>
           <p className="text-xs text-gray-500">
             Made with ♥ in Nairobi, Kenya
