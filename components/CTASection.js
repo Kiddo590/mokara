@@ -10,7 +10,7 @@ export default function CTASection() {
   const c = t.cta;
 
   const whatsappLink =
-    'https://wa.me/254759313266?text=Hello%20Moucara%20Adventures!%20I%27d%20like%20to%20plan%20a%20trip.';
+    'https://wa.me/254759313266?text=Hello%20Moucara%20Adventures%20Limited!%20I%27d%20like%20to%20plan%20a%20trip.';
 
   return (
     <section className="py-20 bg-mokara-orange relative overflow-hidden">

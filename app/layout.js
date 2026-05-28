@@ -5,7 +5,7 @@ import WhatsAppFloat from '@/components/WhatsAppFloat';
 import { LanguageProvider } from '@/contexts/LanguageContext';
 
 export const metadata = {
-  metadataBase: new URL('https://moucaraadventures.com'),
+  metadataBase: new URL('https://moucaraadventures.co.ke'),
   title: {
     default: 'Moucara Adventures Limited | Kenya & Zanzibar Travel Packages',
     template: '%s | Moucara Adventures Limited',
@@ -27,7 +27,7 @@ export const metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_KE',
-    url: 'https://mokara.co.ke',
+    url: 'https://moucaraadventures.co.ke',
     siteName: 'Moucara Adventures Limited',
     title: 'Moucara Adventures Limited | Kenya & Zanzibar Travel Packages',
     description:

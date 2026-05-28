@@ -1,7 +1,7 @@
 import { packages } from '@/data/packages';
 
 export default function sitemap() {
-  const baseUrl = 'https://mokara.co.ke';
+  const baseUrl = 'https://moucaraadventures.co.ke';
 
   const staticPages = [
     { url: baseUrl, lastModified: new Date(), changeFrequency: 'weekly', priority: 1 },

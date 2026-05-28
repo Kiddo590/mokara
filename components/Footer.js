@@ -130,7 +130,7 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="https://wa.me/254759313266?text=Hello%20Moucara%20Adventures!%20I'd%20like%20to%20enquire%20about%20your%20tours."
+                  href="https://wa.me/254759313266?text=Hello%20Moucara%20Adventures%20Limited!%20I'd%20like%20to%20enquire%20about%20your%20tours."
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 mt-1 px-4 py-2 bg-green-600 hover:bg-green-700 text-white text-sm font-semibold rounded-full transition-colors"

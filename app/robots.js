@@ -4,6 +4,6 @@ export default function robots() {
       userAgent: '*',
       allow: '/',
     },
-    sitemap: 'https://mokara.co.ke/sitemap.xml',
+    sitemap: 'https://moucaraadventures.co.ke/sitemap.xml',
   };
 }
