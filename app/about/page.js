@@ -5,11 +5,11 @@ import CTASection from '@/components/CTASection';
 import { Heart, Globe, Shield, Leaf, Users, MapPin, Star, Award } from 'lucide-react';
 
 export const metadata = {
-  title: 'About Mokara — Our Story & Mission',
+  title: 'About Moucara Adventures — Our Story & Mission',
   description:
-    'Learn about Mokara Tours & Travel — a Nairobi-based travel company founded to make authentic, all-inclusive Kenyan travel accessible to everyone. Our mission, vision, and values.',
+    'Learn about Moucara Adventures Tours & Travel — a Nairobi-based travel company founded to make authentic, all-inclusive Kenyan travel accessible to everyone. Our mission, vision, and values.',
   openGraph: {
-    title: 'About Mokara Tours & Travel',
+    title: 'About Moucara Adventures Tours & Travel',
     description:
       'Our story, mission, and commitment to delivering unforgettable travel experiences across Kenya and beyond.',
   },
@@ -93,7 +93,7 @@ export default function AboutPage() {
             Born in Kenya,<br />Built for Explorers
           </h1>
           <p className="text-lg text-gray-200 max-w-2xl mx-auto leading-relaxed">
-            Mokara was founded with a simple belief: Kenya is one of the most extraordinary places on
+            Moucara Adventures was founded with a simple belief: Kenya is one of the most extraordinary places on
             Earth, and everyone deserves to experience it without stress.
           </p>
         </div>
@@ -129,7 +129,7 @@ export default function AboutPage() {
               </h2>
               <div className="space-y-4 text-gray-600 dark:text-gray-300 leading-relaxed">
                 <p>
-                  Mokara was founded in 2021 by Amara Njoroge, a Nairobi-born traveler who grew
+                  Moucara Adventures was founded in 2021 by Amara Njoroge, a Nairobi-born traveler who grew
                   frustrated watching her friends struggle to plan trips across Kenya. Transport
                   hassles, unreliable accommodation, and tourist traps were robbing people of the
                   magic that Kenya truly offers.
@@ -137,10 +137,10 @@ export default function AboutPage() {
                 <p>
                   She started small — a WhatsApp group, a handwritten itinerary for a Mombasa trip,
                   and a passion for getting the details right. Word spread quickly. By the end of the
-                  first year, Mokara had sent over 50 travellers on unforgettable journeys.
+                  first year, Moucara Adventures had sent over 50 travellers on unforgettable journeys.
                 </p>
                 <p>
-                  Today, Mokara is a full-service travel company handling everything from road
+                  Today, Moucara Adventures is a full-service travel company handling everything from road
                   transfers to luxury resort bookings, safari guides to spice farm tours. We&apos;ve
                   helped over 500 travelers explore Kenya, and we&apos;re just getting started.
                 </p>
@@ -195,7 +195,7 @@ export default function AboutPage() {
           <SectionHeader
             eyebrow="What We Stand For"
             title="Our Core Values"
-            subtitle="The principles that guide everything we do at Mokara."
+            subtitle="The principles that guide everything we do at Moucara Adventures."
           />
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {values.map(({ icon: Icon, title, description }) => (
@@ -218,7 +218,7 @@ export default function AboutPage() {
       <section className="py-20 bg-mokara-sand/30 dark:bg-mokara-dark-soft/50">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeader
-            eyebrow="The People Behind Mokara"
+            eyebrow="The People Behind Moucara Adventures"
             title="Meet Our Team"
             subtitle="Passionate travelers and local experts dedicated to crafting your perfect trip."
           />

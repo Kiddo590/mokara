@@ -1,7 +1,7 @@
 export const metadata = {
   title: 'Kenya Tour Packages — All Destinations',
   description:
-    'Browse all Mokara travel packages: Mombasa Beach Escape, Kisumu Lake Experience, Zanzibar Luxury Retreat, Maasai Mara Safari, and Nairobi City Explorer. All-inclusive Kenya and Tanzania tours.',
+    'Browse all Moucara Adventures travel packages: Mombasa Beach Escape, Kisumu Lake Experience, Zanzibar Luxury Retreat, Maasai Mara Safari, and Nairobi City Explorer. All-inclusive Kenya and Tanzania tours.',
   keywords: [
     'Kenya tour packages',
     'Mombasa beach holiday',
@@ -11,7 +11,7 @@ export const metadata = {
     'all-inclusive East Africa tours',
   ],
   openGraph: {
-    title: 'Kenya Tour Packages | Mokara Tours & Travel',
+    title: 'Kenya Tour Packages | Moucara Adventures Tours & Travel',
     description:
       'Explore all our all-inclusive travel packages across Kenya and beyond. Mombasa, Kisumu, Zanzibar, Maasai Mara, and Nairobi.',
   },

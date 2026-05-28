@@ -2,6 +2,14 @@
 
 import { useState } from 'react';
 import { Phone, Mail, MapPin, MessageCircle, Send, CheckCircle, Clock, Instagram, Facebook } from 'lucide-react';
+
+function TikTokIcon({ className }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" className={className}>
+      <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.19 8.19 0 0 0 4.78 1.52V6.76a4.85 4.85 0 0 1-1.01-.07z" />
+    </svg>
+  );
+}
 import { buildWhatsAppLink } from '@/lib/utils';
 
 
@@ -9,14 +17,14 @@ const contactInfo = [
   {
     icon: Phone,
     label: 'Phone',
-    value: '+254 700 000 000',
-    href: 'tel:+254700000000',
+    value: '+254 759 313 266',
+    href: 'tel:+254759313266',
   },
   {
     icon: Mail,
     label: 'Email',
-    value: 'hello@mokara.co.ke',
-    href: 'mailto:hello@mokara.co.ke',
+    value: 'moucaraadventures@gmail.com',
+    href: 'mailto:moucaraadventures@gmail.com',
   },
   {
     icon: MapPin,
@@ -48,7 +56,7 @@ export default function ContactPage() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    const msg = `Hello Mokara! I'd like to get in touch.
+    const msg = `Hello Moucara Adventures! I'd like to get in touch.
 
 *Name:* ${form.name}
 *Email:* ${form.email}
@@ -60,7 +68,7 @@ export default function ContactPage() {
   }
 
   const whatsappLink =
-    'https://wa.me/254700000000?text=Hello%20Mokara!%20I%27d%20like%20to%20enquire%20about%20your%20tours.';
+    'https://wa.me/254759313266?text=Hello%20Moucara%20Adventures!%20I%27d%20like%20to%20enquire%20about%20your%20tours.';
 
   return (
     <>
@@ -135,24 +143,33 @@ export default function ContactPage() {
                 <h3 className="font-bold text-mokara-dark dark:text-white mb-4 text-sm">
                   Follow Our Adventures
                 </h3>
-                <div className="flex gap-3">
+                <div className="flex flex-wrap gap-2">
                   <a
-                    href="https://instagram.com"
+                    href="https://instagram.com/MoucaraAdventures"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-4 py-2.5 bg-gradient-to-r from-purple-500 to-pink-500 text-white text-sm font-semibold rounded-xl hover:opacity-90 transition-opacity flex-1 justify-center"
+                    className="flex items-center gap-2 px-3 py-2.5 bg-gradient-to-r from-purple-500 to-pink-500 text-white text-sm font-semibold rounded-xl hover:opacity-90 transition-opacity flex-1 justify-center"
                   >
                     <Instagram className="w-4 h-4" />
                     Instagram
                   </a>
                   <a
-                    href="https://facebook.com"
+                    href="https://facebook.com/MoucaraAdventures"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-4 py-2.5 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold rounded-xl transition-colors flex-1 justify-center"
+                    className="flex items-center gap-2 px-3 py-2.5 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold rounded-xl transition-colors flex-1 justify-center"
                   >
                     <Facebook className="w-4 h-4" />
                     Facebook
+                  </a>
+                  <a
+                    href="https://tiktok.com/@MoucaraAdventures"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 px-3 py-2.5 bg-black hover:bg-gray-800 text-white text-sm font-semibold rounded-xl transition-colors flex-1 justify-center"
+                  >
+                    <TikTokIcon className="w-4 h-4" />
+                    TikTok
                   </a>
                 </div>
               </div>
@@ -285,7 +302,7 @@ export default function ContactPage() {
                   allowFullScreen=""
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
-                  title="Mokara Tours Office — Westlands, Nairobi"
+                  title="Moucara Adventures Office — Westlands, Nairobi"
                 />
               </div>
             </div>

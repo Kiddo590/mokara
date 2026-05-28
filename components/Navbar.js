@@ -67,7 +67,7 @@ export default function Navbar() {
               <MapPin className="w-4 h-4 text-white" />
             </div>
             <span className={`text-xl font-bold tracking-tight transition-colors ${textClass}`}>
-              Mokara
+              Moucara Adventures
             </span>
           </Link>
 

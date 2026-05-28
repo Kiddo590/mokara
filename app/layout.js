@@ -5,10 +5,10 @@ import WhatsAppFloat from '@/components/WhatsAppFloat';
 import { LanguageProvider } from '@/contexts/LanguageContext';
 
 export const metadata = {
-  metadataBase: new URL('https://mokara.co.ke'),
+  metadataBase: new URL('https://moucaraadventures.com'),
   title: {
-    default: 'Mokara Tours & Travel | Kenya & Zanzibar Travel Packages',
-    template: '%s | Mokara Tours & Travel',
+    default: 'Moucara Adventures | Kenya & Zanzibar Travel Packages',
+    template: '%s | Moucara Adventures',
   },
   description:
     'Discover all-inclusive travel packages across Kenya and Zanzibar. Mombasa, Kisumu, Maasai Mara, Nairobi, and Zanzibar tours with transport, accommodation, and expert guides included.',
@@ -20,16 +20,16 @@ export const metadata = {
     'Kisumu tours',
     'all-inclusive Kenya holidays',
     'Kenya travel agency',
-    'Mokara tours',
+    'Moucara Adventures tours',
   ],
-  authors: [{ name: 'Mokara Tours & Travel' }],
-  creator: 'Mokara Tours & Travel',
+  authors: [{ name: 'Moucara Adventures' }],
+  creator: 'Moucara Adventures',
   openGraph: {
     type: 'website',
     locale: 'en_KE',
     url: 'https://mokara.co.ke',
-    siteName: 'Mokara Tours & Travel',
-    title: 'Mokara Tours & Travel | Kenya & Zanzibar Travel Packages',
+    siteName: 'Moucara Adventures',
+    title: 'Moucara Adventures | Kenya & Zanzibar Travel Packages',
     description:
       'All-inclusive travel packages to Mombasa, Kisumu, Zanzibar, Maasai Mara and Nairobi. Transport, accommodation and experiences covered.',
     images: [
@@ -37,13 +37,13 @@ export const metadata = {
         url: 'https://images.unsplash.com/photo-1516426122078-c23e76319801?w=1200&q=80',
         width: 1200,
         height: 630,
-        alt: 'Mokara Tours & Travel — Kenya Safari',
+        alt: 'Moucara Adventures — Kenya Safari',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Mokara Tours & Travel | Kenya & Zanzibar Travel Packages',
+    title: 'Moucara Adventures | Kenya & Zanzibar Travel Packages',
     description:
       'All-inclusive travel packages across Kenya and beyond. Mombasa, Kisumu, Zanzibar, Maasai Mara.',
     images: ['https://images.unsplash.com/photo-1516426122078-c23e76319801?w=1200&q=80'],

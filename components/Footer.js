@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { MapPin, Phone, Mail, MessageCircle, Instagram, Facebook, Twitter } from 'lucide-react';
+import { MapPin, Phone, Mail, MessageCircle, Instagram, Facebook } from 'lucide-react';
 
 const destinations = [
   { label: 'Mombasa Beach Escape', href: '/packages/mombasa-beach-escape' },
@@ -10,7 +10,7 @@ const destinations = [
 ];
 
 const company = [
-  { label: 'About Mokara', href: '/about' },
+  { label: 'About Moucara Adventures', href: '/about' },
   { label: 'All Destinations', href: '/destinations' },
   { label: 'Contact Us', href: '/contact' },
 ];
@@ -26,7 +26,7 @@ export default function Footer() {
               <div className="w-8 h-8 bg-mokara-orange rounded-full flex items-center justify-center">
                 <MapPin className="w-4 h-4 text-white" />
               </div>
-              <span className="text-xl font-bold text-white">Mokara</span>
+              <span className="text-xl font-bold text-white">Moucara Adventures</span>
             </div>
             <p className="text-sm leading-relaxed text-gray-400 mb-6">
               All-inclusive travel experiences across Kenya and beyond. We handle
@@ -35,7 +35,7 @@ export default function Footer() {
             {/* Social */}
             <div className="flex gap-3">
               <a
-                href="https://instagram.com"
+                href="https://instagram.com/MoucaraAdventures"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram"
@@ -44,7 +44,7 @@ export default function Footer() {
                 <Instagram className="w-4 h-4" />
               </a>
               <a
-                href="https://facebook.com"
+                href="https://facebook.com/MoucaraAdventures"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Facebook"
@@ -53,13 +53,15 @@ export default function Footer() {
                 <Facebook className="w-4 h-4" />
               </a>
               <a
-                href="https://twitter.com"
+                href="https://tiktok.com/@MoucaraAdventures"
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="Twitter/X"
+                aria-label="TikTok"
                 className="w-9 h-9 rounded-full bg-white/10 hover:bg-mokara-orange flex items-center justify-center transition-colors"
               >
-                <Twitter className="w-4 h-4" />
+                <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
+                  <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.19 8.19 0 0 0 4.78 1.52V6.76a4.85 4.85 0 0 1-1.01-.07z" />
+                </svg>
               </a>
             </div>
           </div>
@@ -111,24 +113,24 @@ export default function Footer() {
               <li className="flex items-center gap-3">
                 <Phone className="w-4 h-4 text-mokara-orange shrink-0" />
                 <a
-                  href="tel:+254700000000"
+                  href="tel:+254759313266"
                   className="text-sm text-gray-400 hover:text-mokara-orange transition-colors"
                 >
-                  +254 700 000 000
+                  +254 759 313 266
                 </a>
               </li>
               <li className="flex items-center gap-3">
                 <Mail className="w-4 h-4 text-mokara-orange shrink-0" />
                 <a
-                  href="mailto:hello@mokara.co.ke"
+                  href="mailto:moucaraadventures@gmail.com"
                   className="text-sm text-gray-400 hover:text-mokara-orange transition-colors"
                 >
-                  hello@mokara.co.ke
+                  moucaraadventures@gmail.com
                 </a>
               </li>
               <li>
                 <a
-                  href="https://wa.me/254700000000?text=Hello%20Mokara!%20I'd%20like%20to%20enquire%20about%20your%20tours."
+                  href="https://wa.me/254759313266?text=Hello%20Moucara%20Adventures!%20I'd%20like%20to%20enquire%20about%20your%20tours."
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 mt-1 px-4 py-2 bg-green-600 hover:bg-green-700 text-white text-sm font-semibold rounded-full transition-colors"
@@ -143,7 +145,7 @@ export default function Footer() {
 
         <div className="border-t border-white/10 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-xs text-gray-500">
-            &copy; {new Date().getFullYear()} Mokara Tours & Travel. All rights reserved.
+            &copy; {new Date().getFullYear()} Moucara Adventures. All rights reserved.
           </p>
           <p className="text-xs text-gray-500">
             Made with ♥ in Nairobi, Kenya
