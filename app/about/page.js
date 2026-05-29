@@ -77,8 +77,8 @@ export default function AboutPage() {
       <section className="relative pt-32 pb-20 overflow-hidden">
         <div className="absolute inset-0">
           <Image
-            src="https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?w=1920&q=80"
-            alt="Kenya landscape"
+            src="/images/photo-3.jpg"
+            alt="Moucara Adventures — Kenya landscape"
             fill
             className="object-cover object-center"
             sizes="100vw"
@@ -148,8 +148,8 @@ export default function AboutPage() {
             </div>
             <div className="relative h-96 lg:h-[500px] rounded-3xl overflow-hidden shadow-2xl">
               <Image
-                src="https://images.unsplash.com/photo-1516426122078-c23e76319801?w=800&q=80"
-                alt="Maasai Mara savanna"
+                src="/images/photo-8.jpg"
+                alt="Moucara Adventures — Maasai Mara savanna"
                 fill
                 className="object-cover"
                 sizes="(max-width: 1024px) 100vw, 50vw"

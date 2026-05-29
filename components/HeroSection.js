@@ -19,8 +19,8 @@ export default function HeroSection() {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       <Image
-        src="https://images.unsplash.com/photo-1516426122078-c23e76319801?w=1920&q=85"
-        alt="Kenya safari landscape with elephants and acacia trees at sunset"
+        src="/images/photo-2.jpg"
+        alt="Moucara Adventures — Kenya safari landscape"
         fill
         priority
         className="object-cover object-center"

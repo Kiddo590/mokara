@@ -6,45 +6,45 @@ import { useLanguage } from '@/contexts/LanguageContext';
 
 const photos = [
   {
-    src: 'https://images.unsplash.com/photo-1516426122078-c23e76319801?w=1200&q=80',
-    alt: 'Elephants roaming the Maasai Mara at sunset',
-    label: 'Maasai Mara',
+    src: '/images/photo-2.jpg',
+    alt: 'Moucara Adventures — Kenya safari experience',
+    label: 'Safari',
     featured: true,
   },
   {
-    src: 'https://images.unsplash.com/photo-1549366021-9f761d040a94?w=800&q=80',
-    alt: 'Lion resting on a rock in the savanna',
-    label: 'Safari Life',
-  },
-  {
-    src: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&q=80',
-    alt: 'Crystal turquoise waters of Zanzibar',
-    label: 'Zanzibar',
-  },
-  {
-    src: 'https://images.unsplash.com/photo-1612786979424-71a9aeee82df?w=800&q=80',
-    alt: 'Giraffe in the wild',
+    src: '/images/photo-3.jpg',
+    alt: 'Moucara Adventures — Kenya wildlife',
     label: 'Wildlife',
   },
   {
-    src: 'https://images.unsplash.com/photo-1590523741831-ab7e8b8f9c7f?w=800&q=80',
-    alt: 'White sand beach on the Kenyan coast',
-    label: 'Mombasa Coast',
+    src: '/images/photo-5.jpg',
+    alt: 'Moucara Adventures — scenic Kenya landscape',
+    label: 'Landscapes',
   },
   {
-    src: 'https://images.unsplash.com/photo-1535941339077-2dd1c7963098?w=800&q=80',
-    alt: 'Cheetah on the Maasai Mara plains',
-    label: 'Big Cats',
+    src: '/images/photo-8.jpg',
+    alt: 'Moucara Adventures — Kenya nature',
+    label: 'Nature',
   },
   {
-    src: 'https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?w=800&q=80',
-    alt: 'Hippo Point sunset at Lake Victoria, Kisumu',
-    label: 'Lake Victoria',
+    src: '/images/photo-1.jpg',
+    alt: 'Moucara Adventures — Kenya adventure',
+    label: 'Adventure',
   },
   {
-    src: 'https://images.unsplash.com/photo-1573843981267-be1999ff37cd?w=800&q=80',
-    alt: 'Traditional dhow sailing the Indian Ocean',
-    label: 'Island Life',
+    src: '/images/photo-6.jpg',
+    alt: 'Moucara Adventures — Kenya travel',
+    label: 'Travel',
+  },
+  {
+    src: '/images/photo-7.jpg',
+    alt: 'Moucara Adventures — Kenya experiences',
+    label: 'Experiences',
+  },
+  {
+    src: '/images/photo-4.jpg',
+    alt: 'Moucara Adventures — Kenya moments',
+    label: 'Moments',
   },
 ];
 
