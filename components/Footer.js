@@ -1,4 +1,5 @@
 ﻿import Link from 'next/link';
+import Image from 'next/image';
 import { MapPin, Phone, Mail, MessageCircle, Instagram, Facebook } from 'lucide-react';
 
 const destinations = [
@@ -22,11 +23,14 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
           {/* Brand */}
           <div className="lg:col-span-1">
-            <div className="flex items-center gap-2 mb-4">
-              <div className="w-8 h-8 bg-mokara-orange rounded-full flex items-center justify-center">
-                <MapPin className="w-4 h-4 text-white" />
-              </div>
-              <span className="text-xl font-bold text-white">Moucara Adventures Limited</span>
+            <div className="mb-4">
+              <Image
+                src="/images/logo.jpg"
+                alt="Moucara Adventures Limited"
+                width={160}
+                height={48}
+                className="h-10 w-auto object-contain brightness-0 invert"
+              />
             </div>
             <p className="text-sm leading-relaxed text-gray-400 mb-6">
               All-inclusive travel experiences across Kenya and beyond. We handle

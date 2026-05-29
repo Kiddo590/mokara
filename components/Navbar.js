@@ -2,8 +2,9 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import { Menu, X, Sun, Moon, MapPin, Languages } from 'lucide-react';
+import { Menu, X, Sun, Moon, Languages } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function Navbar() {
@@ -62,13 +63,15 @@ export default function Navbar() {
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 group">
-            <div className="w-8 h-8 bg-mokara-orange rounded-full flex items-center justify-center">
-              <MapPin className="w-4 h-4 text-white" />
-            </div>
-            <span className={`text-xl font-bold tracking-tight transition-colors ${textClass}`}>
-              Moucara Adventures Limited
-            </span>
+          <Link href="/" className="flex items-center group">
+            <Image
+              src="/images/logo.jpg"
+              alt="Moucara Adventures Limited"
+              width={160}
+              height={48}
+              className="h-10 w-auto object-contain"
+              priority
+            />
           </Link>
 
           {/* Desktop Nav */}
