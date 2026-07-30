@@ -2,7 +2,15 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { LayoutDashboard, Package, MessageSquareQuote, Images, Inbox } from 'lucide-react';
+import {
+  LayoutDashboard,
+  Package,
+  MessageSquareQuote,
+  Images,
+  Inbox,
+  BarChart3,
+  Users,
+} from 'lucide-react';
 
 const links = [
   { href: '/admin', label: 'Dashboard', icon: LayoutDashboard, exact: true },
@@ -10,19 +18,24 @@ const links = [
   { href: '/admin/testimonials', label: 'Testimonials', icon: MessageSquareQuote },
   { href: '/admin/gallery', label: 'Gallery', icon: Images },
   { href: '/admin/bookings', label: 'Bookings', icon: Inbox },
+  { href: '/admin/analytics', label: 'Analytics', icon: BarChart3 },
 ];
 
-export default function AdminNav() {
+const ownerLinks = [{ href: '/admin/team', label: 'Team', icon: Users }];
+
+export default function AdminNav({ onNavigate, role }) {
   const pathname = usePathname();
+  const allLinks = role === 'owner' ? [...links, ...ownerLinks] : links;
 
   return (
     <nav className="space-y-1">
-      {links.map(({ href, label, icon: Icon, exact }) => {
+      {allLinks.map(({ href, label, icon: Icon, exact }) => {
         const active = exact ? pathname === href : pathname.startsWith(href);
         return (
           <Link
             key={href}
             href={href}
+            onClick={onNavigate}
             className={`flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium transition-colors ${
               active
                 ? 'bg-mokara-orange text-white'

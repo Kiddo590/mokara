@@ -67,8 +67,9 @@ export default function ContactPage() {
     setSubmitted(true);
   }
 
-  const whatsappLink =
-    'https://wa.me/254759313266?text=Hello%20Moucara%20Adventures%20Limited!%20I%27d%20like%20to%20enquire%20about%20your%20tours.';
+  const whatsappLink = buildWhatsAppLink(
+    "Hello Moucara Adventures Limited! I'd like to enquire about your tours."
+  );
 
   return (
     <>
@@ -202,10 +203,11 @@ export default function ContactPage() {
                   <form onSubmit={handleSubmit} className="space-y-5">
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                       <div>
-                        <label className="block text-xs font-semibold text-gray-500 dark:text-gray-400 mb-1.5 uppercase tracking-wide">
+                        <label htmlFor="contact-name" className="block text-xs font-semibold text-gray-500 dark:text-gray-400 mb-1.5 uppercase tracking-wide">
                           Full Name *
                         </label>
                         <input
+                          id="contact-name"
                           type="text"
                           name="name"
                           required
@@ -216,10 +218,11 @@ export default function ContactPage() {
                         />
                       </div>
                       <div>
-                        <label className="block text-xs font-semibold text-gray-500 dark:text-gray-400 mb-1.5 uppercase tracking-wide">
+                        <label htmlFor="contact-email" className="block text-xs font-semibold text-gray-500 dark:text-gray-400 mb-1.5 uppercase tracking-wide">
                           Email *
                         </label>
                         <input
+                          id="contact-email"
                           type="email"
                           name="email"
                           required
@@ -232,10 +235,11 @@ export default function ContactPage() {
                     </div>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                       <div>
-                        <label className="block text-xs font-semibold text-gray-500 dark:text-gray-400 mb-1.5 uppercase tracking-wide">
+                        <label htmlFor="contact-phone" className="block text-xs font-semibold text-gray-500 dark:text-gray-400 mb-1.5 uppercase tracking-wide">
                           Phone / WhatsApp
                         </label>
                         <input
+                          id="contact-phone"
                           type="tel"
                           name="phone"
                           value={form.phone}
@@ -245,10 +249,11 @@ export default function ContactPage() {
                         />
                       </div>
                       <div>
-                        <label className="block text-xs font-semibold text-gray-500 dark:text-gray-400 mb-1.5 uppercase tracking-wide">
+                        <label htmlFor="contact-subject" className="block text-xs font-semibold text-gray-500 dark:text-gray-400 mb-1.5 uppercase tracking-wide">
                           Subject *
                         </label>
                         <select
+                          id="contact-subject"
                           name="subject"
                           required
                           value={form.subject}
@@ -265,10 +270,11 @@ export default function ContactPage() {
                       </div>
                     </div>
                     <div>
-                      <label className="block text-xs font-semibold text-gray-500 dark:text-gray-400 mb-1.5 uppercase tracking-wide">
+                      <label htmlFor="contact-message" className="block text-xs font-semibold text-gray-500 dark:text-gray-400 mb-1.5 uppercase tracking-wide">
                         Message *
                       </label>
                       <textarea
+                        id="contact-message"
                         name="message"
                         required
                         value={form.message}

@@ -1,10 +1,13 @@
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
-import { getPackageBySlug, getAllSlugs } from '@/lib/packages';
+import { getPackageBySlug, getAllSlugs, getBlockedDates } from '@/lib/packages';
+import { getApprovedTestimonialsForPackage } from '@/lib/testimonials';
 import { formatPrice } from '@/lib/utils';
 import BookingForm from '@/components/BookingForm';
-import { Clock, Star, CheckCircle, XCircle, ChevronLeft, Calendar, Users } from 'lucide-react';
+import PackageGallery from '@/components/PackageGallery';
+import ReviewForm from '@/components/ReviewForm';
+import { Clock, Star, CheckCircle, XCircle, ChevronLeft, Calendar, Users, Quote } from 'lucide-react';
 
 export async function generateStaticParams() {
   return getAllSlugs();
@@ -26,10 +29,19 @@ export async function generateMetadata({ params }) {
       'Kenya tours',
       'all-inclusive travel',
     ],
+    alternates: {
+      canonical: `/packages/${slug}`,
+    },
     openGraph: {
       title: `${pkg.title} | Moucara Adventures Limited`,
       description: pkg.tagline,
       images: [{ url: pkg.image, width: 1200, height: 630, alt: pkg.title }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${pkg.title} | Moucara Adventures Limited`,
+      description: pkg.tagline,
+      images: [pkg.image],
     },
   };
 }
@@ -40,9 +52,11 @@ export default async function PackageDetailPage({ params }) {
   if (!pkg) notFound();
 
   const {
+    id,
     title,
     tagline,
     image,
+    gallery,
     price,
     duration,
     category,
@@ -55,8 +69,65 @@ export default async function PackageDetailPage({ params }) {
     notIncluded,
   } = pkg;
 
+  const [packageReviews, blockedDates] = await Promise.all([
+    getApprovedTestimonialsForPackage(title),
+    getBlockedDates(id),
+  ]);
+
+  const realReviewCount = packageReviews.length;
+  const realRating = realReviewCount
+    ? packageReviews.reduce((sum, r) => sum + r.rating, 0) / realReviewCount
+    : null;
+  const displayRating = Number(realRating ?? rating ?? 0);
+  const displayReviewCount = realReviewCount || reviews || 0;
+
+  const structuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: title,
+    description,
+    image,
+    category,
+    offers: {
+      '@type': 'Offer',
+      price,
+      priceCurrency: 'KES',
+      availability: 'https://schema.org/InStock',
+    },
+    ...(displayReviewCount > 0 && {
+      aggregateRating: {
+        '@type': 'AggregateRating',
+        ratingValue: displayRating,
+        reviewCount: displayReviewCount,
+      },
+    }),
+  };
+
+  const siteUrl = 'https://moucaraadventures.co.ke';
+  const breadcrumbData = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: siteUrl },
+      { '@type': 'ListItem', position: 2, name: 'Destinations', item: `${siteUrl}/destinations` },
+      { '@type': 'ListItem', position: 3, name: title, item: `${siteUrl}/packages/${slug}` },
+    ],
+  };
+
   return (
     <article>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(structuredData).replace(/</g, '\\u003c'),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(breadcrumbData).replace(/</g, '\\u003c'),
+        }}
+      />
       {/* Hero */}
       <div className="relative h-[55vh] min-h-[400px] overflow-hidden">
         <Image
@@ -83,8 +154,8 @@ export default async function PackageDetailPage({ params }) {
             </span>
             <div className="flex items-center gap-1.5 text-white text-sm">
               <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-              <span className="font-semibold">{rating}</span>
-              <span className="text-gray-300">({reviews} reviews)</span>
+              <span className="font-semibold">{displayRating.toFixed(1)}</span>
+              <span className="text-gray-300">({displayReviewCount} reviews)</span>
             </div>
           </div>
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-2">{title}</h1>
@@ -127,6 +198,14 @@ export default async function PackageDetailPage({ params }) {
               <h2 className="text-2xl font-bold text-mokara-dark dark:text-white mb-4">Overview</h2>
               <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-base">{description}</p>
             </section>
+
+            {/* Photo gallery */}
+            {gallery.length > 0 && (
+              <section>
+                <h2 className="text-2xl font-bold text-mokara-dark dark:text-white mb-4">Photos</h2>
+                <PackageGallery images={gallery} title={title} />
+              </section>
+            )}
 
             {/* Highlights */}
             <section>
@@ -204,6 +283,38 @@ export default async function PackageDetailPage({ params }) {
                 </div>
               </div>
             </section>
+
+            {/* Reviews */}
+            <section>
+              <h2 className="text-2xl font-bold text-mokara-dark dark:text-white mb-6">
+                Traveler Reviews
+              </h2>
+              {packageReviews.length > 0 && (
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+                  {packageReviews.map((r) => (
+                    <div
+                      key={r.id}
+                      className="p-5 bg-white dark:bg-mokara-dark-soft rounded-2xl shadow-sm border border-gray-100 dark:border-white/10 relative"
+                    >
+                      <Quote className="absolute top-4 right-4 w-6 h-6 text-mokara-orange/20" />
+                      <div className="flex gap-0.5 mb-2">
+                        {Array.from({ length: r.rating }).map((_, i) => (
+                          <Star key={i} className="w-3.5 h-3.5 fill-yellow-400 text-yellow-400" />
+                        ))}
+                      </div>
+                      <p className="text-sm text-gray-600 dark:text-gray-300 mb-3 italic">
+                        &ldquo;{r.text}&rdquo;
+                      </p>
+                      <p className="text-sm font-semibold text-mokara-dark dark:text-white">
+                        {r.name}
+                      </p>
+                      {r.location && <p className="text-xs text-gray-400">{r.location}</p>}
+                    </div>
+                  ))}
+                </div>
+              )}
+              <ReviewForm packageTitle={title} />
+            </section>
           </div>
 
           {/* Sidebar */}
@@ -215,7 +326,7 @@ export default async function PackageDetailPage({ params }) {
                 <p className="text-4xl font-bold text-mokara-orange">{formatPrice(price)}</p>
                 <p className="text-xs text-gray-400 mt-1">per person · all-inclusive</p>
               </div>
-              <BookingForm packageTitle={title} />
+              <BookingForm packageTitle={title} blockedDates={blockedDates} />
             </div>
           </div>
         </div>

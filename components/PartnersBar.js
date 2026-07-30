@@ -25,7 +25,7 @@ export default function PartnersBar() {
 
         {/* Scrolling strip */}
         <div className="relative overflow-hidden">
-          <div className="flex gap-6 animate-[scroll_30s_linear_infinite] hover:[animation-play-state:paused] w-max">
+          <div className="partners-marquee flex gap-6 w-max">
             {/* Duplicate list for seamless loop */}
             {[...partners, ...partners].map((p, i) => (
               <div

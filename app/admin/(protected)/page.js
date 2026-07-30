@@ -1,14 +1,15 @@
 import Link from 'next/link';
-import { Package, MessageSquareQuote, Images, Inbox } from 'lucide-react';
+import { Package, MessageSquareQuote, Images, Inbox, Clock3 } from 'lucide-react';
 import { createClient } from '@/lib/supabase/server';
 
 async function getCounts() {
   const supabase = await createClient();
-  const [packages, testimonials, gallery, bookings] = await Promise.all([
+  const [packages, testimonials, gallery, bookings, pendingReviews] = await Promise.all([
     supabase.from('packages').select('id', { count: 'exact', head: true }),
     supabase.from('testimonials').select('id', { count: 'exact', head: true }),
     supabase.from('gallery_images').select('id', { count: 'exact', head: true }),
     supabase.from('bookings').select('id', { count: 'exact', head: true }).eq('status', 'new'),
+    supabase.from('testimonials').select('id', { count: 'exact', head: true }).eq('status', 'pending'),
   ]);
 
   return {
@@ -16,6 +17,7 @@ async function getCounts() {
     testimonials: testimonials.count ?? 0,
     gallery: gallery.count ?? 0,
     newBookings: bookings.count ?? 0,
+    pendingReviews: pendingReviews.count ?? 0,
   };
 }
 
@@ -27,12 +29,13 @@ export default async function AdminDashboardPage() {
     { label: 'Testimonials', value: counts.testimonials, href: '/admin/testimonials', icon: MessageSquareQuote },
     { label: 'Gallery Photos', value: counts.gallery, href: '/admin/gallery', icon: Images },
     { label: 'New Enquiries', value: counts.newBookings, href: '/admin/bookings', icon: Inbox },
+    { label: 'Pending Reviews', value: counts.pendingReviews, href: '/admin/testimonials', icon: Clock3 },
   ];
 
   return (
     <div>
       <h1 className="text-2xl font-bold text-mokara-dark dark:text-white mb-6">Dashboard</h1>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
         {cards.map(({ label, value, href, icon: Icon }) => (
           <Link
             key={label}

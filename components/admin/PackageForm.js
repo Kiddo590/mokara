@@ -38,7 +38,7 @@ function labelClass() {
   return 'block text-xs font-semibold text-gray-500 dark:text-gray-400 mb-1.5 uppercase tracking-wide';
 }
 
-export default function PackageForm({ initialPackage }) {
+export default function PackageForm({ initialPackage, role }) {
   const router = useRouter();
   const isEdit = Boolean(initialPackage);
   const [form, setForm] = useState(() => ({ ...emptyPackage, ...initialPackage }));
@@ -65,7 +65,10 @@ export default function PackageForm({ initialPackage }) {
 
     const supabase = createClient();
     const { error: saveError } = isEdit
-      ? await supabase.from('packages').update(payload).eq('id', initialPackage.id)
+      ? await supabase
+          .from('packages')
+          .update({ ...payload, updated_at: new Date().toISOString() })
+          .eq('id', initialPackage.id)
       : await supabase.from('packages').insert(payload);
 
     setSaving(false);
@@ -146,7 +149,7 @@ export default function PackageForm({ initialPackage }) {
           />
         </div>
 
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label className={labelClass()}>Category</label>
             <input
@@ -166,7 +169,7 @@ export default function PackageForm({ initialPackage }) {
           </div>
         </div>
 
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label className={labelClass()}>Price (KES)</label>
             <input
@@ -188,7 +191,7 @@ export default function PackageForm({ initialPackage }) {
           </div>
         </div>
 
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label className={labelClass()}>Rating</label>
             <input
@@ -274,7 +277,7 @@ export default function PackageForm({ initialPackage }) {
           {saving ? 'Saving…' : 'Save Package'}
         </button>
 
-        {isEdit && (
+        {isEdit && role === 'owner' && (
           <button
             type="button"
             onClick={handleDelete}

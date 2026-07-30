@@ -1,22 +1,20 @@
 ﻿import Link from 'next/link';
 import Image from 'next/image';
 import { MapPin, Phone, Mail, MessageCircle, Instagram, Facebook } from 'lucide-react';
-
-const destinations = [
-  { label: 'Mombasa Beach Escape', href: '/packages/mombasa-beach-escape' },
-  { label: 'Kisumu Lake Experience', href: '/packages/kisumu-lake-experience' },
-  { label: 'Zanzibar Luxury Retreat', href: '/packages/zanzibar-luxury-retreat' },
-  { label: 'Nairobi City Explorer', href: '/packages/nairobi-city-explorer' },
-  { label: 'Maasai Mara Safari', href: '/packages/maasai-mara-safari' },
-];
+import { buildWhatsAppLink } from '@/lib/utils';
 
 const company = [
   { label: 'About Moucara Adventures Limited', href: '/about' },
   { label: 'All Destinations', href: '/destinations' },
+  { label: 'FAQ', href: '/faq' },
   { label: 'Contact Us', href: '/contact' },
 ];
 
-export default function Footer() {
+export default function Footer({ packages = [] }) {
+  const whatsappLink = buildWhatsAppLink(
+    "Hello Moucara Adventures Limited! I'd like to enquire about your tours."
+  );
+
   return (
     <footer className="bg-mokara-dark text-gray-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-8">
@@ -74,13 +72,13 @@ export default function Footer() {
           <div>
             <h3 className="text-white font-semibold mb-4">Destinations</h3>
             <ul className="space-y-2">
-              {destinations.map((d) => (
-                <li key={d.href}>
+              {packages.map((pkg) => (
+                <li key={pkg.slug}>
                   <Link
-                    href={d.href}
+                    href={`/packages/${pkg.slug}`}
                     className="text-sm text-gray-400 hover:text-mokara-orange transition-colors"
                   >
-                    {d.label}
+                    {pkg.title}
                   </Link>
                 </li>
               ))}
@@ -134,7 +132,7 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="https://wa.me/254759313266?text=Hello%20Moucara%20Adventures%20Limited!%20I'd%20like%20to%20enquire%20about%20your%20tours."
+                  href={whatsappLink}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 mt-1 px-4 py-2 bg-green-600 hover:bg-green-700 text-white text-sm font-semibold rounded-full transition-colors"

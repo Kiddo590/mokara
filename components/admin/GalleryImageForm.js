@@ -92,7 +92,7 @@ export default function GalleryImageForm({ initialImage }) {
         <input value={form.alt} onChange={(e) => set('alt', e.target.value)} className={inputClass()} />
       </div>
 
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <label className="flex items-center gap-2 text-sm text-mokara-dark dark:text-white">
           <input
             type="checkbox"

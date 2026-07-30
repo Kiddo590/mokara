@@ -10,6 +10,9 @@
     'Kisumu tours',
     'all-inclusive East Africa tours',
   ],
+  alternates: {
+    canonical: '/destinations',
+  },
   openGraph: {
     title: 'Kenya Tour Packages | Moucara Adventures Limited',
     description:

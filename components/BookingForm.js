@@ -5,7 +5,7 @@ import { Send, CheckCircle, MessageCircle } from 'lucide-react';
 import { buildBookingWhatsAppMessage, buildWhatsAppLink } from '@/lib/utils';
 import { createClient } from '@/lib/supabase/client';
 
-export default function BookingForm({ packageTitle = '' }) {
+export default function BookingForm({ packageTitle = '', blockedDates = [] }) {
   const [form, setForm] = useState({
     name: '',
     email: '',
@@ -15,17 +15,34 @@ export default function BookingForm({ packageTitle = '' }) {
     message: '',
   });
   const [submitted, setSubmitted] = useState(false);
+  const [dateError, setDateError] = useState('');
+
+  const blockedDateSet = new Set(blockedDates.map((d) => d.date));
 
   function handleChange(e) {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    if (e.target.name === 'date') setDateError('');
   }
 
-  async function handleSubmit(e) {
+  function handleSubmit(e) {
     e.preventDefault();
 
-    try {
-      const supabase = createClient();
-      await supabase.from('bookings').insert({
+    if (blockedDateSet.has(form.date)) {
+      setDateError('This date is unavailable for this package. Please pick another date.');
+      return;
+    }
+
+    // Open synchronously, in direct response to the click, so browsers don't
+    // treat it as a blocked popup once the Supabase insert below awaits.
+    const msg = buildBookingWhatsAppMessage({ ...form, packageTitle });
+    const link = buildWhatsAppLink(msg);
+    window.open(link, '_blank');
+    setSubmitted(true);
+
+    const supabase = createClient();
+    supabase
+      .from('bookings')
+      .insert({
         package_title: packageTitle || null,
         name: form.name,
         email: form.email,
@@ -33,15 +50,10 @@ export default function BookingForm({ packageTitle = '' }) {
         travel_date: form.date || null,
         travelers: form.travelers,
         message: form.message,
+      })
+      .then(({ error }) => {
+        if (error) console.error('Failed to save booking enquiry', error);
       });
-    } catch (err) {
-      console.error('Failed to save booking enquiry', err);
-    }
-
-    const msg = buildBookingWhatsAppMessage({ ...form, packageTitle });
-    const link = buildWhatsAppLink(msg);
-    window.open(link, '_blank');
-    setSubmitted(true);
   }
 
   if (submitted) {
@@ -139,6 +151,13 @@ export default function BookingForm({ packageTitle = '' }) {
               min={new Date().toISOString().split('T')[0]}
               className="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-white/10 bg-gray-50 dark:bg-mokara-dark text-mokara-dark dark:text-white focus:outline-none focus:ring-2 focus:ring-mokara-orange text-sm"
             />
+            {dateError && <p className="mt-1.5 text-xs text-red-500">{dateError}</p>}
+            {!dateError && blockedDates.length > 0 && (
+              <p className="mt-1.5 text-xs text-gray-400">
+                Unavailable: {blockedDates.slice(0, 5).map((d) => d.date).join(', ')}
+                {blockedDates.length > 5 && '…'}
+              </p>
+            )}
           </div>
           <div>
             <label className="block text-xs font-semibold text-gray-500 dark:text-gray-400 mb-1.5 uppercase tracking-wide">

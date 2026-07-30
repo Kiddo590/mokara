@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { Plus, Star } from 'lucide-react';
 import { createClient } from '@/lib/supabase/server';
 import { formatPrice } from '@/lib/utils';
+import { getCurrentAdminRole } from '@/lib/adminAuth';
 
 async function getPackages() {
   const supabase = await createClient();
@@ -14,21 +15,23 @@ async function getPackages() {
 }
 
 export default async function AdminPackagesPage() {
-  const packages = await getPackages();
+  const [packages, role] = await Promise.all([getPackages(), getCurrentAdminRole()]);
 
   return (
     <div>
       <div className="flex items-center justify-between mb-6">
         <h1 className="text-2xl font-bold text-mokara-dark dark:text-white">Packages</h1>
-        <Link
-          href="/admin/packages/new"
-          className="flex items-center gap-2 px-4 py-2.5 bg-mokara-orange hover:bg-mokara-orange-dark text-white text-sm font-semibold rounded-xl transition-colors"
-        >
-          <Plus className="w-4 h-4" /> New Package
-        </Link>
+        {role === 'owner' && (
+          <Link
+            href="/admin/packages/new"
+            className="flex items-center gap-2 px-4 py-2.5 bg-mokara-orange hover:bg-mokara-orange-dark text-white text-sm font-semibold rounded-xl transition-colors"
+          >
+            <Plus className="w-4 h-4" /> New Package
+          </Link>
+        )}
       </div>
 
-      <div className="bg-white dark:bg-mokara-dark-soft rounded-2xl shadow-sm border border-gray-100 dark:border-white/10 overflow-hidden">
+      <div className="bg-white dark:bg-mokara-dark-soft rounded-2xl shadow-sm border border-gray-100 dark:border-white/10 overflow-x-auto">
         <table className="w-full text-sm">
           <thead className="bg-gray-50 dark:bg-mokara-dark text-left text-xs text-gray-400 uppercase tracking-wide">
             <tr>

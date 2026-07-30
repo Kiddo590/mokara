@@ -8,6 +8,9 @@ export const metadata = {
   title: 'About Moucara Adventures Limited — Our Story & Mission',
   description:
     'Learn about Moucara Adventures Limited — a Nairobi-based travel company founded to make authentic, all-inclusive Kenyan travel accessible to everyone. Our mission, vision, and values.',
+  alternates: {
+    canonical: '/about',
+  },
   openGraph: {
     title: 'About Moucara Adventures Limited',
     description:
@@ -15,11 +18,17 @@ export const metadata = {
   },
 };
 
+const FOUNDING_YEAR = 2021;
+
 const stats = [
   { icon: Users, value: '500+', label: 'Happy Travelers' },
   { icon: MapPin, value: '5+', label: 'Destinations' },
   { icon: Star, value: '4.9', label: 'Average Rating' },
-  { icon: Award, value: '3+', label: 'Years of Excellence' },
+  {
+    icon: Award,
+    value: `${new Date().getFullYear() - FOUNDING_YEAR}+`,
+    label: 'Years of Excellence',
+  },
 ];
 
 const values = [

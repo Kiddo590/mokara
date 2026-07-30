@@ -8,12 +8,13 @@ export default async function sitemap() {
     { url: `${baseUrl}/destinations`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.9 },
     { url: `${baseUrl}/about`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.7 },
     { url: `${baseUrl}/contact`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.7 },
+    { url: `${baseUrl}/faq`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.6 },
   ];
 
   const packages = await getAllPackages();
   const packagePages = packages.map((pkg) => ({
     url: `${baseUrl}/packages/${pkg.slug}`,
-    lastModified: new Date(),
+    lastModified: new Date(pkg.updatedAt || pkg.createdAt || Date.now()),
     changeFrequency: 'monthly',
     priority: 0.8,
   }));

@@ -6,29 +6,8 @@ import CTASection from '@/components/CTASection';
 import PhotoGallery from '@/components/PhotoGallery';
 import PartnersBar from '@/components/PartnersBar';
 import { getFeaturedPackages } from '@/lib/packages';
+import { getApprovedTestimonials } from '@/lib/testimonials';
 import { createClient } from '@/lib/supabase/public';
-
-async function getTestimonials() {
-  const supabase = await createClient();
-  const { data, error } = await supabase
-    .from('testimonials')
-    .select('*')
-    .order('sort_order', { ascending: true });
-
-  if (error) {
-    console.error('getTestimonials error', error);
-    return [];
-  }
-  return data.map((row) => ({
-    id: row.id,
-    name: row.name,
-    location: row.location,
-    avatar: row.avatar,
-    rating: row.rating,
-    package: row.package_title,
-    text: row.text,
-  }));
-}
 
 async function getGalleryPhotos() {
   const supabase = await createClient();
@@ -53,7 +32,7 @@ async function getGalleryPhotos() {
 export default async function HomePage() {
   const [featuredPackages, testimonials, photos] = await Promise.all([
     getFeaturedPackages(),
-    getTestimonials(),
+    getApprovedTestimonials(),
     getGalleryPhotos(),
   ]);
 

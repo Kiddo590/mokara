@@ -35,6 +35,15 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    if (!isOpen) return;
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') setIsOpen(false);
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isOpen]);
+
   function toggleDark() {
     const html = document.documentElement;
     if (dark) {
@@ -137,10 +146,10 @@ export default function Navbar() {
       {/* Mobile Drawer */}
       <div
         className={`md:hidden transition-all duration-300 overflow-hidden ${
-          isOpen ? 'max-h-96' : 'max-h-0'
+          isOpen ? 'max-h-[calc(100vh-4rem)]' : 'max-h-0'
         }`}
       >
-        <div className="bg-white dark:bg-mokara-dark border-t border-gray-100 dark:border-white/10 px-4 py-6 flex flex-col gap-4">
+        <div className="bg-white dark:bg-mokara-dark border-t border-gray-100 dark:border-white/10 px-4 py-6 flex flex-col gap-4 overflow-y-auto max-h-[calc(100vh-4rem)]">
           {navLinks.map((link) => (
             <Link
               key={link.href}

@@ -13,6 +13,7 @@ const emptyTestimonial = {
   package_title: '',
   text: '',
   sort_order: 0,
+  status: 'approved',
 };
 
 function inputClass() {
@@ -72,7 +73,7 @@ export default function TestimonialForm({ initialTestimonial }) {
         <p className="text-sm text-red-500 bg-red-50 dark:bg-red-950/30 rounded-lg px-4 py-2">{error}</p>
       )}
 
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
           <label className={labelClass()}>Name</label>
           <input required value={form.name} onChange={(e) => set('name', e.target.value)} className={inputClass()} />
@@ -83,7 +84,7 @@ export default function TestimonialForm({ initialTestimonial }) {
         </div>
       </div>
 
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
           <label className={labelClass()}>Avatar initials</label>
           <input
@@ -104,7 +105,7 @@ export default function TestimonialForm({ initialTestimonial }) {
         </div>
       </div>
 
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
           <label className={labelClass()}>Rating (1-5)</label>
           <input
@@ -136,6 +137,15 @@ export default function TestimonialForm({ initialTestimonial }) {
           rows={4}
           className={`${inputClass()} resize-none`}
         />
+      </div>
+
+      <div>
+        <label className={labelClass()}>Status</label>
+        <select value={form.status} onChange={(e) => set('status', e.target.value)} className={inputClass()}>
+          <option value="pending">Pending review</option>
+          <option value="approved">Approved (visible on site)</option>
+          <option value="rejected">Rejected (hidden)</option>
+        </select>
       </div>
 
       <div className="flex items-center gap-3 pt-4 border-t border-gray-200 dark:border-white/10">

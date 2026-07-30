@@ -4,13 +4,15 @@ import { motion } from 'framer-motion';
 import { MessageCircle, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { buildWhatsAppLink } from '@/lib/utils';
 
 export default function CTASection() {
   const { t } = useLanguage();
   const c = t.cta;
 
-  const whatsappLink =
-    'https://wa.me/254759313266?text=Hello%20Moucara%20Adventures%20Limited!%20I%27d%20like%20to%20plan%20a%20trip.';
+  const whatsappLink = buildWhatsAppLink(
+    "Hello Moucara Adventures Limited! I'd like to plan a trip."
+  );
 
   return (
     <section className="py-20 bg-mokara-orange relative overflow-hidden">
