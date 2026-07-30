@@ -2,6 +2,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Plus } from 'lucide-react';
 import { createClient } from '@/lib/supabase/server';
+import BackLink from '@/components/admin/BackLink';
 
 async function getGalleryImages() {
   const supabase = await createClient();
@@ -18,6 +19,7 @@ export default async function AdminGalleryPage() {
 
   return (
     <div>
+      <BackLink href="/admin" label="Back to Dashboard" />
       <div className="flex items-center justify-between mb-6">
         <h1 className="text-2xl font-bold text-mokara-dark dark:text-white">Gallery</h1>
         <Link

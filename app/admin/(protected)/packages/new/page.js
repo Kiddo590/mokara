@@ -1,6 +1,7 @@
 import { redirect } from 'next/navigation';
 import { getCurrentAdminRole } from '@/lib/adminAuth';
 import PackageForm from '@/components/admin/PackageForm';
+import BackLink from '@/components/admin/BackLink';
 
 export default async function NewPackagePage() {
   const role = await getCurrentAdminRole();
@@ -8,6 +9,7 @@ export default async function NewPackagePage() {
 
   return (
     <div>
+      <BackLink href="/admin/packages" label="Back to Packages" />
       <h1 className="text-2xl font-bold text-mokara-dark dark:text-white mb-6">New Package</h1>
       <PackageForm />
     </div>

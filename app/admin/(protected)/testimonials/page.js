@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { Plus } from 'lucide-react';
 import { createClient } from '@/lib/supabase/server';
+import BackLink from '@/components/admin/BackLink';
 
 const statusColors = {
   pending: 'bg-amber-100 text-amber-700 dark:bg-amber-900/40 dark:text-amber-300',
@@ -25,6 +26,7 @@ export default async function AdminTestimonialsPage() {
 
   return (
     <div>
+      <BackLink href="/admin" label="Back to Dashboard" />
       <div className="flex items-center justify-between mb-6">
         <h1 className="text-2xl font-bold text-mokara-dark dark:text-white">Testimonials</h1>
         <Link

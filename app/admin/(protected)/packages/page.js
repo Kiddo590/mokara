@@ -3,6 +3,7 @@ import { Plus, Star } from 'lucide-react';
 import { createClient } from '@/lib/supabase/server';
 import { formatPrice } from '@/lib/utils';
 import { getCurrentAdminRole } from '@/lib/adminAuth';
+import BackLink from '@/components/admin/BackLink';
 
 async function getPackages() {
   const supabase = await createClient();
@@ -19,6 +20,7 @@ export default async function AdminPackagesPage() {
 
   return (
     <div>
+      <BackLink href="/admin" label="Back to Dashboard" />
       <div className="flex items-center justify-between mb-6">
         <h1 className="text-2xl font-bold text-mokara-dark dark:text-white">Packages</h1>
         {role === 'owner' && (

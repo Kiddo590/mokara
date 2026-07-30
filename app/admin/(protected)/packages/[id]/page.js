@@ -3,6 +3,7 @@ import { createClient } from '@/lib/supabase/server';
 import { getCurrentAdminRole } from '@/lib/adminAuth';
 import PackageForm from '@/components/admin/PackageForm';
 import BlockedDatesManager from '@/components/admin/BlockedDatesManager';
+import BackLink from '@/components/admin/BackLink';
 
 export default async function EditPackagePage({ params }) {
   const { id } = await params;
@@ -22,6 +23,7 @@ export default async function EditPackagePage({ params }) {
 
   return (
     <div>
+      <BackLink href="/admin/packages" label="Back to Packages" />
       <h1 className="text-2xl font-bold text-mokara-dark dark:text-white mb-6">Edit Package</h1>
       <PackageForm initialPackage={pkg} role={role} />
       <BlockedDatesManager packageId={id} initialDates={blockedDates || []} />

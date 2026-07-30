@@ -1,6 +1,7 @@
 import { notFound } from 'next/navigation';
 import { createClient } from '@/lib/supabase/server';
 import GalleryImageForm from '@/components/admin/GalleryImageForm';
+import BackLink from '@/components/admin/BackLink';
 
 export default async function EditGalleryImagePage({ params }) {
   const { id } = await params;
@@ -15,6 +16,7 @@ export default async function EditGalleryImagePage({ params }) {
 
   return (
     <div>
+      <BackLink href="/admin/gallery" label="Back to Gallery" />
       <h1 className="text-2xl font-bold text-mokara-dark dark:text-white mb-6">Edit Gallery Photo</h1>
       <GalleryImageForm initialImage={image} />
     </div>

@@ -1,4 +1,5 @@
 import { createClient } from '@/lib/supabase/server';
+import BackLink from '@/components/admin/BackLink';
 
 const STATUS_LABELS = { new: 'New', contacted: 'Contacted', booked: 'Booked', cancelled: 'Cancelled' };
 // Same mapping used in BookingsTable.js, reused here so status identity stays
@@ -98,6 +99,7 @@ export default async function AdminAnalyticsPage() {
 
   return (
     <div className="space-y-8 max-w-4xl">
+      <BackLink href="/admin" label="Back to Dashboard" />
       <h1 className="text-2xl font-bold text-mokara-dark dark:text-white">Analytics</h1>
 
       {/* Top stats */}
