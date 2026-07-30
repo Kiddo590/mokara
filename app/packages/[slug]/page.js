@@ -1,7 +1,8 @@
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
-import { getPackageBySlug, getAllSlugs, formatPrice } from '@/lib/utils';
+import { getPackageBySlug, getAllSlugs } from '@/lib/packages';
+import { formatPrice } from '@/lib/utils';
 import BookingForm from '@/components/BookingForm';
 import { Clock, Star, CheckCircle, XCircle, ChevronLeft, Calendar, Users } from 'lucide-react';
 
@@ -11,7 +12,7 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }) {
   const { slug } = await params;
-  const pkg = getPackageBySlug(slug);
+  const pkg = await getPackageBySlug(slug);
   if (!pkg) return {};
 
   return {
@@ -35,7 +36,7 @@ export async function generateMetadata({ params }) {
 
 export default async function PackageDetailPage({ params }) {
   const { slug } = await params;
-  const pkg = getPackageBySlug(slug);
+  const pkg = await getPackageBySlug(slug);
   if (!pkg) notFound();
 
   const {

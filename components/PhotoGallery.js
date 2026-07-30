@@ -4,53 +4,11 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { useLanguage } from '@/contexts/LanguageContext';
 
-const photos = [
-  {
-    src: '/images/photo-2.jpg',
-    alt: 'Moucara Adventures — Kenya safari experience',
-    label: 'Safari',
-    featured: true,
-  },
-  {
-    src: '/images/photo-3.jpg',
-    alt: 'Moucara Adventures — Kenya wildlife',
-    label: 'Wildlife',
-  },
-  {
-    src: '/images/photo-5.jpg',
-    alt: 'Moucara Adventures — scenic Kenya landscape',
-    label: 'Landscapes',
-  },
-  {
-    src: '/images/photo-8.jpg',
-    alt: 'Moucara Adventures — Kenya nature',
-    label: 'Nature',
-  },
-  {
-    src: '/images/photo-1.jpg',
-    alt: 'Moucara Adventures — Kenya adventure',
-    label: 'Adventure',
-  },
-  {
-    src: '/images/photo-6.jpg',
-    alt: 'Moucara Adventures — Kenya travel',
-    label: 'Travel',
-  },
-  {
-    src: '/images/photo-7.jpg',
-    alt: 'Moucara Adventures — Kenya experiences',
-    label: 'Experiences',
-  },
-  {
-    src: '/images/photo-4.jpg',
-    alt: 'Moucara Adventures — Kenya moments',
-    label: 'Moments',
-  },
-];
-
-export default function PhotoGallery() {
+export default function PhotoGallery({ photos = [] }) {
   const { t } = useLanguage();
   const g = t.gallery;
+
+  if (photos.length === 0) return null;
 
   return (
     <section className="py-20 bg-mokara-sand/20 dark:bg-mokara-dark-soft/50">
@@ -93,7 +51,7 @@ export default function PhotoGallery() {
           {/* Right column — 2 stacked */}
           {photos.slice(1, 3).map((photo, i) => (
             <motion.div
-              key={photo.label}
+              key={photo.id}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -116,7 +74,7 @@ export default function PhotoGallery() {
           {/* Bottom row — 3 equal photos */}
           {photos.slice(3, 6).map((photo, i) => (
             <motion.div
-              key={photo.label}
+              key={photo.id}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -139,7 +97,7 @@ export default function PhotoGallery() {
           {/* Extra row — 2 wide + 1 */}
           {photos.slice(6, 8).map((photo, i) => (
             <motion.div
-              key={photo.label}
+              key={photo.id}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}

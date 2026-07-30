@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { Send, CheckCircle, MessageCircle } from 'lucide-react';
 import { buildBookingWhatsAppMessage, buildWhatsAppLink } from '@/lib/utils';
+import { createClient } from '@/lib/supabase/client';
 
 export default function BookingForm({ packageTitle = '' }) {
   const [form, setForm] = useState({
@@ -19,8 +20,24 @@ export default function BookingForm({ packageTitle = '' }) {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   }
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
+
+    try {
+      const supabase = createClient();
+      await supabase.from('bookings').insert({
+        package_title: packageTitle || null,
+        name: form.name,
+        email: form.email,
+        phone: form.phone,
+        travel_date: form.date || null,
+        travelers: form.travelers,
+        message: form.message,
+      });
+    } catch (err) {
+      console.error('Failed to save booking enquiry', err);
+    }
+
     const msg = buildBookingWhatsAppMessage({ ...form, packageTitle });
     const link = buildWhatsAppLink(msg);
     window.open(link, '_blank');

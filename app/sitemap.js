@@ -1,6 +1,6 @@
-import { packages } from '@/data/packages';
+import { getAllPackages } from '@/lib/packages';
 
-export default function sitemap() {
+export default async function sitemap() {
   const baseUrl = 'https://moucaraadventures.co.ke';
 
   const staticPages = [
@@ -10,6 +10,7 @@ export default function sitemap() {
     { url: `${baseUrl}/contact`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.7 },
   ];
 
+  const packages = await getAllPackages();
   const packagePages = packages.map((pkg) => ({
     url: `${baseUrl}/packages/${pkg.slug}`,
     lastModified: new Date(),

@@ -4,58 +4,9 @@ import { motion } from 'framer-motion';
 import { Star, Quote } from 'lucide-react';
 import SectionHeader from '@/components/ui/SectionHeader';
 
-const testimonials = [
-  {
-    name: 'Amina Wanjiru',
-    location: 'Nairobi, Kenya',
-    avatar: 'AW',
-    rating: 5,
-    package: 'Zanzibar Luxury Retreat',
-    text: "Zanzibar was absolutely magical! Moucara Adventures Limited took care of everything — from the moment we landed to the farewell transfer. The private sandbank picnic was the highlight of my life. I've already booked the Mombasa trip for next year!",
-  },
-  {
-    name: 'James Omondi',
-    location: 'Kampala, Uganda',
-    avatar: 'JO',
-    rating: 5,
-    package: 'Maasai Mara Safari',
-    text: "The Maasai Mara safari was beyond anything I imagined. We saw all of the Big Five on day one! Our guide Daniel was knowledgeable, passionate, and made the whole experience unforgettable. Worth every shilling.",
-  },
-  {
-    name: 'Grace Mutua',
-    location: 'Mombasa, Kenya',
-    avatar: 'GM',
-    rating: 5,
-    package: 'Kisumu Lake Experience',
-    text: "I never thought Kisumu could be so beautiful. The boat ride at sunrise, the hippos at sunset, the tilapia by the lake — it was all perfect. Moucara Adventures Limited's attention to detail is unmatched. Highly recommend!",
-  },
-  {
-    name: 'David Kariuki',
-    location: 'Nairobi, Kenya',
-    avatar: 'DK',
-    rating: 5,
-    package: 'Mombasa Beach Escape',
-    text: "Booked the Mombasa package for our anniversary and it was flawless. The hotel was stunning, the Old Town tour was fascinating, and the food was incredible. Moucara Adventures Limited made it so stress-free and special.",
-  },
-  {
-    name: 'Sarah Achieng',
-    location: 'Kisumu, Kenya',
-    avatar: 'SA',
-    rating: 5,
-    package: 'Nairobi City Explorer',
-    text: "Even as a Kenyan, I discovered so much about my own country with Moucara Adventures Limited. The Giraffe Centre and elephant orphanage were incredible. I highly recommend this for anyone who wants to see Nairobi properly!",
-  },
-  {
-    name: 'Michael Njuguna',
-    location: 'Nakuru, Kenya',
-    avatar: 'MN',
-    rating: 5,
-    package: 'Zanzibar Luxury Retreat',
-    text: "Five stars doesn't cover it. The Zanzibar retreat was pure luxury from start to finish. Stone Town, the spice farms, the sunset dhow — every single moment was curated to perfection. Moucara Adventures Limited, you've spoiled us!",
-  },
-];
+export default function TestimonialsSection({ testimonials = [] }) {
+  if (testimonials.length === 0) return null;
 
-export default function TestimonialsSection() {
   return (
     <section className="py-20 bg-white dark:bg-mokara-dark">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -68,7 +19,7 @@ export default function TestimonialsSection() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {testimonials.map((t, i) => (
             <motion.div
-              key={t.name}
+              key={t.id}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-50px' }}

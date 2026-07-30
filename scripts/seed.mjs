@@ -1,14 +1,27 @@
-export const packages = [
+// One-off script to migrate the original static site content into Supabase.
+// Run with: node --env-file=.env.local scripts/seed.mjs   (Node 20.6+)
+// Requires NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in the environment
+// (the service role key bypasses RLS so this script can seed rows before you have an admin session).
+
+import { createClient } from '@supabase/supabase-js';
+
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+
+if (!supabaseUrl || !serviceRoleKey) {
+  console.error('Missing NEXT_PUBLIC_SUPABASE_URL or SUPABASE_SERVICE_ROLE_KEY in the environment.');
+  process.exit(1);
+}
+
+const supabase = createClient(supabaseUrl, serviceRoleKey);
+
+const packages = [
   {
     slug: 'mombasa-beach-escape',
     title: 'Mombasa Beach Escape',
     tagline: 'Sun, sand & Swahili culture on the Kenyan coast',
     image: '/images/photo-1.jpg',
-    gallery: [
-      '/images/photo-1.jpg',
-      '/images/photo-9.jpg',
-      '/images/photo-4.jpg',
-    ],
+    gallery: ['/images/photo-1.jpg', '/images/photo-9.jpg', '/images/photo-4.jpg'],
     price: 45000,
     duration: '4 Days / 3 Nights',
     category: 'Beach',
@@ -42,7 +55,7 @@ export const packages = [
         day: 3,
         title: 'Marine Park & Diani Beach',
         description:
-          'Early morning snorkeling excursion at Kisite-Mpunguti Marine National Park. Afternoon transfer to Diani Beach — voted Africa\'s leading beach destination multiple years running. Sunset cocktails by the shore.',
+          "Early morning snorkeling excursion at Kisite-Mpunguti Marine National Park. Afternoon transfer to Diani Beach — voted Africa's leading beach destination multiple years running. Sunset cocktails by the shore.",
       },
       {
         day: 4,
@@ -61,7 +74,7 @@ export const packages = [
       'Dhow cruise',
       'Airport/hotel transfers',
     ],
-    notIncluded: [
+    not_included: [
       'Flights (if preferred over road)',
       'Personal shopping & souvenirs',
       'Alcoholic beverages',
@@ -74,10 +87,7 @@ export const packages = [
     title: 'Kisumu Lake Experience',
     tagline: 'Discover the magic of Lake Victoria & Luos heritage',
     image: '/images/photo-7.jpg',
-    gallery: [
-      '/images/photo-7.jpg',
-      '/images/photo-6.jpg',
-    ],
+    gallery: ['/images/photo-7.jpg', '/images/photo-6.jpg'],
     price: 28000,
     duration: '3 Days / 2 Nights',
     category: 'Nature',
@@ -124,23 +134,14 @@ export const packages = [
       'Kisumu Museum entry',
       'All transfers',
     ],
-    notIncluded: [
-      'Flights',
-      'Personal expenses',
-      'Alcoholic beverages',
-      'Travel insurance',
-    ],
+    not_included: ['Flights', 'Personal expenses', 'Alcoholic beverages', 'Travel insurance'],
   },
   {
     slug: 'zanzibar-luxury-retreat',
     title: 'Zanzibar Luxury Retreat',
     tagline: 'The spice island awaits — pure luxury on the Indian Ocean',
     image: '/images/photo-5.jpg',
-    gallery: [
-      '/images/photo-5.jpg',
-      '/images/photo-3.jpg',
-      '/images/photo-4.jpg',
-    ],
+    gallery: ['/images/photo-5.jpg', '/images/photo-3.jpg', '/images/photo-4.jpg'],
     price: 95000,
     duration: '5 Days / 4 Nights',
     category: 'Island',
@@ -157,7 +158,7 @@ export const packages = [
       'Sunset dhow cruise with dinner',
     ],
     description:
-      "Zanzibar — the fabled Spice Island — is the ultimate Indian Ocean escape. Turquoise waters, powdery white sand, overwater bungalows, and a rich Arab-Swahili history create an experience unlike anything else. This premium package places you in a luxury resort on Nungwi Beach, with curated excursions to Stone Town, spice farms, and hidden sandbanks. Pure paradise.",
+      'Zanzibar — the fabled Spice Island — is the ultimate Indian Ocean escape. Turquoise waters, powdery white sand, overwater bungalows, and a rich Arab-Swahili history create an experience unlike anything else. This premium package places you in a luxury resort on Nungwi Beach, with curated excursions to Stone Town, spice farms, and hidden sandbanks. Pure paradise.',
     itinerary: [
       {
         day: 1,
@@ -202,7 +203,7 @@ export const packages = [
       'Private sandbank picnic',
       'Sunset dhow cruise with dinner',
     ],
-    notIncluded: [
+    not_included: [
       'Travel insurance',
       'Personal shopping',
       'Premium alcoholic beverages',
@@ -213,12 +214,9 @@ export const packages = [
   {
     slug: 'nairobi-city-explorer',
     title: 'Nairobi City Explorer',
-    tagline: 'The world\'s only safari capital — wild & cosmopolitan',
+    tagline: "The world's only safari capital — wild & cosmopolitan",
     image: '/images/photo-9.jpg',
-    gallery: [
-      '/images/photo-9.jpg',
-      '/images/photo-6.jpg',
-    ],
+    gallery: ['/images/photo-9.jpg', '/images/photo-6.jpg'],
     price: 18000,
     duration: '2 Days / 1 Night',
     category: 'City',
@@ -234,7 +232,7 @@ export const packages = [
       'Carnivore Restaurant dinner',
     ],
     description:
-      'Nairobi is one of Africa\'s most dynamic cities — where you can have lions roar within sight of the city skyline. This compact weekend package packs in the best of the capital: feed a Rothschild giraffe by hand, watch rescued baby elephants play in the mud, drive through the world\'s only urban national park, and dine at the legendary Carnivore restaurant.',
+      "Nairobi is one of Africa's most dynamic cities — where you can have lions roar within sight of the city skyline. This compact weekend package packs in the best of the capital: feed a Rothschild giraffe by hand, watch rescued baby elephants play in the mud, drive through the world's only urban national park, and dine at the legendary Carnivore restaurant.",
     itinerary: [
       {
         day: 1,
@@ -256,23 +254,14 @@ export const packages = [
       'Professional guide',
       'All transfers within Nairobi',
     ],
-    notIncluded: [
-      'Lunch (day 2)',
-      'Personal shopping',
-      'Alcoholic beverages',
-      'Travel insurance',
-    ],
+    not_included: ['Lunch (day 2)', 'Personal shopping', 'Alcoholic beverages', 'Travel insurance'],
   },
   {
     slug: 'maasai-mara-safari',
     title: 'Maasai Mara Safari',
-    tagline: 'Africa\'s greatest wildlife spectacle awaits',
+    tagline: "Africa's greatest wildlife spectacle awaits",
     image: '/images/photo-2.jpg',
-    gallery: [
-      '/images/photo-2.jpg',
-      '/images/photo-8.jpg',
-      '/images/photo-3.jpg',
-    ],
+    gallery: ['/images/photo-2.jpg', '/images/photo-8.jpg', '/images/photo-3.jpg'],
     price: 65000,
     duration: '3 Days / 2 Nights',
     category: 'Safari',
@@ -321,7 +310,7 @@ export const packages = [
       'Bush breakfast',
       'Sundowner drinks',
     ],
-    notIncluded: [
+    not_included: [
       'Hot air balloon safari (optional, ~KES 35,000)',
       'Alcoholic beverages at camp',
       'Travel insurance',
@@ -331,6 +320,100 @@ export const packages = [
   },
 ];
 
-export const featuredPackages = packages.filter((p) => p.featured);
+const testimonials = [
+  {
+    name: 'Amina Wanjiru',
+    location: 'Nairobi, Kenya',
+    avatar: 'AW',
+    rating: 5,
+    package_title: 'Zanzibar Luxury Retreat',
+    text: "Zanzibar was absolutely magical! Moucara Adventures Limited took care of everything — from the moment we landed to the farewell transfer. The private sandbank picnic was the highlight of my life. I've already booked the Mombasa trip for next year!",
+    sort_order: 0,
+  },
+  {
+    name: 'James Omondi',
+    location: 'Kampala, Uganda',
+    avatar: 'JO',
+    rating: 5,
+    package_title: 'Maasai Mara Safari',
+    text: 'The Maasai Mara safari was beyond anything I imagined. We saw all of the Big Five on day one! Our guide Daniel was knowledgeable, passionate, and made the whole experience unforgettable. Worth every shilling.',
+    sort_order: 1,
+  },
+  {
+    name: 'Grace Mutua',
+    location: 'Mombasa, Kenya',
+    avatar: 'GM',
+    rating: 5,
+    package_title: 'Kisumu Lake Experience',
+    text: "I never thought Kisumu could be so beautiful. The boat ride at sunrise, the hippos at sunset, the tilapia by the lake — it was all perfect. Moucara Adventures Limited's attention to detail is unmatched. Highly recommend!",
+    sort_order: 2,
+  },
+  {
+    name: 'David Kariuki',
+    location: 'Nairobi, Kenya',
+    avatar: 'DK',
+    rating: 5,
+    package_title: 'Mombasa Beach Escape',
+    text: 'Booked the Mombasa package for our anniversary and it was flawless. The hotel was stunning, the Old Town tour was fascinating, and the food was incredible. Moucara Adventures Limited made it so stress-free and special.',
+    sort_order: 3,
+  },
+  {
+    name: 'Sarah Achieng',
+    location: 'Kisumu, Kenya',
+    avatar: 'SA',
+    rating: 5,
+    package_title: 'Nairobi City Explorer',
+    text: 'Even as a Kenyan, I discovered so much about my own country with Moucara Adventures Limited. The Giraffe Centre and elephant orphanage were incredible. I highly recommend this for anyone who wants to see Nairobi properly!',
+    sort_order: 4,
+  },
+  {
+    name: 'Michael Njuguna',
+    location: 'Nakuru, Kenya',
+    avatar: 'MN',
+    rating: 5,
+    package_title: 'Zanzibar Luxury Retreat',
+    text: "Five stars doesn't cover it. The Zanzibar retreat was pure luxury from start to finish. Stone Town, the spice farms, the sunset dhow — every single moment was curated to perfection. Moucara Adventures Limited, you've spoiled us!",
+    sort_order: 5,
+  },
+];
 
-export const categories = ['All', 'Beach', 'Safari', 'Nature', 'City', 'Island'];
+const galleryImages = [
+  { src: '/images/photo-2.jpg', alt: 'Moucara Adventures — Kenya safari experience', label: 'Safari', featured: true, sort_order: 0 },
+  { src: '/images/photo-3.jpg', alt: 'Moucara Adventures — Kenya wildlife', label: 'Wildlife', featured: false, sort_order: 1 },
+  { src: '/images/photo-5.jpg', alt: 'Moucara Adventures — scenic Kenya landscape', label: 'Landscapes', featured: false, sort_order: 2 },
+  { src: '/images/photo-8.jpg', alt: 'Moucara Adventures — Kenya nature', label: 'Nature', featured: false, sort_order: 3 },
+  { src: '/images/photo-1.jpg', alt: 'Moucara Adventures — Kenya adventure', label: 'Adventure', featured: false, sort_order: 4 },
+  { src: '/images/photo-6.jpg', alt: 'Moucara Adventures — Kenya travel', label: 'Travel', featured: false, sort_order: 5 },
+  { src: '/images/photo-7.jpg', alt: 'Moucara Adventures — Kenya experiences', label: 'Experiences', featured: false, sort_order: 6 },
+  { src: '/images/photo-4.jpg', alt: 'Moucara Adventures — Kenya moments', label: 'Moments', featured: false, sort_order: 7 },
+];
+
+async function seedPackages() {
+  const { error } = await supabase.from('packages').upsert(packages, { onConflict: 'slug' });
+  if (error) throw error;
+  console.log(`Seeded ${packages.length} packages.`);
+}
+
+async function seedTestimonials() {
+  const { error } = await supabase.from('testimonials').insert(testimonials);
+  if (error) throw error;
+  console.log(`Seeded ${testimonials.length} testimonials.`);
+}
+
+async function seedGallery() {
+  const { error } = await supabase.from('gallery_images').insert(galleryImages);
+  if (error) throw error;
+  console.log(`Seeded ${galleryImages.length} gallery photos.`);
+}
+
+async function main() {
+  await seedPackages();
+  await seedTestimonials();
+  await seedGallery();
+  console.log('Done. The seeded image paths point at /public/images — replace them via the admin panel whenever you like.');
+}
+
+main().catch((err) => {
+  console.error(err);
+  process.exit(1);
+});
